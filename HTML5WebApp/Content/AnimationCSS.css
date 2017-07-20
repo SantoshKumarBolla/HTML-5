@@ -1,0 +1,59 @@
+﻿td {
+    border: 1px solid brown;
+    padding: 5px;
+}
+
+@keyframes colorChange{
+    from {
+        background: red;
+    }
+    to{
+        background: yellow;
+    }
+}
+
+@-webkit-keyframes colorChange {
+    from {
+        background: red;
+    }
+
+    to {
+        background: yellow;
+    }
+}
+
+.colorChangeDiv {
+    background: red;
+    animation: colorChange 5s infinite;
+    -webkit-animation: colorChange 5s infinite;
+}
+
+@keyframes colorChangeShade {
+    0% { background: red; }
+    25% { background: blue; }
+    50% { background: green; }
+    75% { background: yellow; }
+    100% { background: cyan; }
+}
+@-webkit-keyframes colorChangeShade {
+    0% {background: red;}
+    25% {background: blue;}
+    50% {background: green;}
+    75% { background: yellow;}
+    100% { background: cyan;}
+}
+
+.colorChangeShade {
+    background: gold;
+    animation: colorChangeShade 5s infinite;
+    -webkit-animation: colorChangeShade 5s infinite;
+}
+
+.divHover {
+    width: 100px; height:100px; background-color:cornflowerblue;
+    transition: width 3s;
+}
+
+.divHover:hover {
+    width: 300px;
+}

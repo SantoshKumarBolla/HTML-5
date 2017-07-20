@@ -74,6 +74,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AnimationCSS.css" />
+    <Content Include="Content\StyleCSS3.css" />
+    <Content Include="HTML5FormTypes\Html5FormsPage.html" />
     <Content Include="Images\BEE1.GIF" />
     <Content Include="Images\border.png" />
     <Content Include="Images\Mickey.gif" />
@@ -82,11 +85,14 @@
     <Content Include="Images\SleepWithBook.gif" />
     <Content Include="Images\Wink.gif" />
     <Content Include="PageStructure\AndroidPage.html" />
+    <Content Include="StyleCSS3\AnimationPage.html" />
+    <Content Include="StyleCSS3\StyleCSS3Page.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

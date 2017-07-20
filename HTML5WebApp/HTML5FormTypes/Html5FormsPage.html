@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form method="post" id="hForm" action="\">
+        <datalist id="PhoneTemplate">
+            <option value="Nexus4"></option>
+            <option value="Galaxy S"></option>
+            <option value="Nexus5"></option>
+            <option value="Galaxy SII"></option>
+            <option value="Nexus7"></option>
+            <option value="Galaxy 8"></option>
+        </datalist>
+
+        <fieldset>
+            <legend>All the Form Features...</legend>
+
+            <label id="Name">Name:</label>
+            <input type="text" id="NameTextBox" required="required" placeholder="Enter Name" /><br />
+
+            <label id="Email">Email:</label>
+            <input type="email" id="EmailTextBox" required="required" placeholder="Enter Email" /><br />
+
+            <label id="Blog">Blog Address:</label>
+            <input type="url" /><br />
+
+            <label id="Age">Age:</label>
+            <input type="number" id="AgeTextBox" min="8" max="80" value="18" step="1" /><br />
+            
+            <label id="Phone">Phone:</label>
+            <input type="tel" id="TelTextBox" title="XXX-XXXX-XXXX" 
+                   pattern="\d{3}-\d{4}-\d{4}"/> <br />
+
+            <label id="GettingUp" >Getting Up time:</label>
+            <input type="range" id="GettingUpRange"
+                   step="1" min="6" max="11" value="7"
+                   onchange="GettingUpOutput.value"
+                   /> &nbsp;
+            <output name="GettingUpOutput"></output>
+            <br />
+
+            <label id="Color">Color:</label>
+            <input type="color"/><br />
+
+            <label id="time">Time:</label>
+            <input type="time" /><br />
+
+            <label>PhoneList:</label>
+            <input type="text" id="PhoneListTextBox" 
+                   list="PhoneTemplate"
+                   /><br />
+
+
+            <br />
+            <input type="submit" value="Submit" />
+        </fieldset>
+    </form>
+</body>
+</html>
