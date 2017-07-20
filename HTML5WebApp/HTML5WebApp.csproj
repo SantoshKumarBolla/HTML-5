@@ -65,11 +65,19 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\jquery.textshadow.css" />
+    <Content Include="DragAndDrop\DragAndDropPage.html" />
     <Content Include="Drawing\CanvasPage.html" />
     <Content Include="Drawing\SVGPage.html" />
+    <Content Include="GeoLocation\MyLocationPage.html" />
+    <Content Include="ModernizerPolyFill\ModernizerTextShadowPage.html" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery.textshadow.js" />
+    <Content Include="Scripts\modernizr-custom.js" />
     <Content Include="Video\AntenaWheels.ogg" />
     <Content Include="Video\Bike.webm" />
+    <Content Include="Content\_jquery.textshadow.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -92,12 +100,15 @@
     <Content Include="StyleCSS3\AnimationPage.html" />
     <Content Include="StyleCSS3\StyleCSS3Page.html" />
     <Content Include="Video\Bike.mp4" />
+    <Content Include="Video\VideoPalyerPage.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

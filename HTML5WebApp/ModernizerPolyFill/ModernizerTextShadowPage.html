@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../Content/StyleCSS3.css" rel="stylesheet" />
+    <link href="../Content/jquery.textshadow.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-3.2.1.js"></script>
+    <script src="../Scripts/jquery.textshadow.js"></script>
+    <script src="../Scripts/modernizr-custom.js"></script>
+
+    <script>
+        $(document).ready(
+            function () {
+                if (!Modernizr.textshadow) {
+                    alert("Textshadow is not supported");
+                    $("h1").textshadow("4px 3px 2px rgba(128, 0, 128, 1.0)");
+                }
+                else {
+                    $("h1").addClass("textShadow");
+                }
+                if (!Modernizr.FlexBox) {
+                    alert("FlexBox not supported");
+                }
+            }
+        );
+    </script>
+
+
+</head>
+<body>
+    <h1>This is TextShadow Test</h1>
+
+    <div class="textShadow">
+        This is test for Shadows
+    </div>
+</body>
+</html>
