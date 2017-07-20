@@ -65,7 +65,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Drawing\CanvasPage.html" />
+    <Content Include="Drawing\SVGPage.html" />
     <Content Include="packages.config" />
+    <Content Include="Video\AntenaWheels.ogg" />
+    <Content Include="Video\Bike.webm" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -87,6 +91,7 @@
     <Content Include="PageStructure\AndroidPage.html" />
     <Content Include="StyleCSS3\AnimationPage.html" />
     <Content Include="StyleCSS3\StyleCSS3Page.html" />
+    <Content Include="Video\Bike.mp4" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

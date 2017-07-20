@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Canvas Page</title>
+    <script>
+        function DrawLine()
+        {
+            var lineCanvas = document.getElementById("LineCanvas");
+
+            var lineCtx = lineCanvas.getContext("2d");
+            lineCtx.moveTo(30, 30);
+            lineCtx.lineTo(80, 90);
+            lineCtx.lineWidth = 10;
+            lineCtx.lineCap = "square"; //"round"; //  "butt"
+            lineCtx.stroke();
+        }
+
+        function DrawCircle() {
+            var circleCanvas = document.getElementById("CircleCanvas");
+            var circleCtx = circleCanvas.getContext("2d");
+
+            circleCtx.beginPath();
+            circleCtx.arc(95, 100, 40, 0, 10);
+            circleCtx.stroke();
+        }
+
+        function DrawRect() {
+            var rectCanvas = document.getElementById("RectangleCanvas");
+            var rCtx = rectCanvas.getContext("2d");
+            
+            //var gradient = rCtx.createLinearGradient(60, 10, 160, 120);
+            var gradient = rCtx.createLinearGradient(60, 10, 60, 150);
+            gradient.addColorStop(0, "Crimson");
+            gradient.addColorStop(0.50, "Blue");
+            gradient.addColorStop(0.75, "Yellow");
+
+            rCtx.beginPath();
+            rCtx.fillStyle = gradient;
+            rCtx.fillRect(20, 20, 160, 100);
+            rCtx.strokeRect(20, 20, 160, 100);
+
+        }
+
+        function DrawRect1() {
+            var rectCanvas = document.getElementById("RectangleCanvas1");
+            var rCtx = rectCanvas.getContext("2d");
+            
+            var gradient = rCtx.createRadialGradient(100, 70, 35, 90, 60, 100);
+            gradient.addColorStop(0, "Crimson");
+            gradient.addColorStop(1, "Blue");
+
+            rCtx.beginPath();
+            rCtx.fillStyle = gradient;
+            rCtx.fillRect(20, 20, 160, 100);
+        }
+
+        function DrawText() {
+            var textCanvas = document.getElementById("TextCanvas");
+            var tCtx = textCanvas.getContext("2d");
+
+            tCtx.font = "30px Arial";
+
+            tCtx.strokeText("Stroke Text", 20, 100, 200);
+            tCtx.fillText("Fill Text", 20, 150, 200);
+        }
+
+        function DrawRectCircle() {
+            var rCanvas = document.getElementById("RectCircleCanvas");
+            var rCtx = rCanvas.getContext("2d");
+
+            rCtx.beginPath();
+            rCtx.fillStyle = "Cornflowerblue";
+            rCtx.fillRect(15, 15, 170, 170);
+
+            rCtx.lineWidth = 10;
+            rCtx.strokeStyle = "yellow";
+            rCtx.fillStyle = "Crimson";
+            rCtx.arc(100, 100, 50, 0, Math.PI * 2, true);
+
+            rCtx.stroke();
+            rCtx.fill();
+        }
+
+        function DrawBezire() {
+            var bCanvas = document.getElementById("BezierCanvas");
+            var bCtx = bCanvas.getContext("2d");
+            
+            bCtx.lineWidth = 3;
+            bCtx.beginPath();
+            bCtx.moveTo(50, 190);
+            
+            bCtx.bezierCurveTo(50, 50, 350, 350, 300, 170);
+            
+            bCtx.stroke();
+            bCtx.closePath();
+        }
+
+        function DrawQuadratic() {
+            var qCanvas = document.getElementById("QuadraticCanvas");
+            var qCtx = qCanvas.getContext("2d");
+
+            qCtx.beginPath();
+            qCtx.moveTo(50, 50);
+            qCtx.quadraticCurveTo(200, 50, 170, 150);
+            qCtx.stroke();
+            qCtx.closePath();
+        }
+
+
+        function Draw() {
+            DrawLine(); DrawCircle(); DrawRect(); DrawRect1(); DrawText(); DrawRectCircle(); DrawBezire(); DrawQuadratic();
+        }
+    </script>
+</head>
+<body onload="Draw()">
+    <canvas id="LineCanvas" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+    <canvas id="CircleCanvas" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+    <canvas id="RectangleCanvas" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+    <canvas id="RectangleCanvas1" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+    <canvas id="TextCanvas" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+    <canvas id="RectCircleCanvas" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+    <canvas id="BezierCanvas" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+    <canvas id="QuadraticCanvas" height="200" width="200" style="border: 2px solid black;">
+        Your Browser does not support Canvas...
+    </canvas>
+
+</body>
+</html>
