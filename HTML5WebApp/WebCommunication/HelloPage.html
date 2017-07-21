@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script>
+        addEventListener('message', GetGreetingData, false);
+
+        function GetGreetingData(args) {
+            document.getElementById("DataTextBox").value = args.data;
+            document.getElementById("OriginTextBox").value = args.origin;
+        }
+    </script>
+
+</head>
+<body>
+    <section>
+        Data Received: <input type="text" id="DataTextBox"/><br />
+        Data Origin: <input type="text" id="OriginTextBox"/><br />
+    </section>
+</body>
+</html>

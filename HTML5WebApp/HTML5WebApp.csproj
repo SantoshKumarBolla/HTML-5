@@ -74,6 +74,8 @@
     <Content Include="ModernizerPolyFill\ModernizerTextShadowPage.html" />
     <Content Include="OfflineCaching\CachingPage.html" />
     <Content Include="OfflineCaching\TestManifestPage.html" />
+    <Content Include="OfflineIndexedDB\IndexedDBStoragePage.html" />
+    <Content Include="OfflineStorage\SQLLiteStoragePage.html" />
     <Content Include="OfflineStorage\StoragePage.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -84,6 +86,10 @@
     <Content Include="Content\_jquery.textshadow.scss" />
     <Content Include="Caching\DateTimeCache.manifest" />
     <Content Include="Caching\TestManifest.manifest" />
+    <Content Include="WebCommunication\GreetingPage.html" />
+    <Content Include="WebCommunication\HelloPage.html" />
+    <Content Include="WebWorker\RandomWordPage.html" />
+    <Content Include="WebWorker\RandomWords.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

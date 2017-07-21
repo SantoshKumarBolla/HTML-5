@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>IndexedDB Storage Page</title>
+    <style>
+        .lableWidth {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+    <script src="../Scripts/jquery-3.2.1.js"></script>
+    <script>
+        var successMessage = function (message) {
+            var resultDiv = document.getElementById("resultDiv");
+            var newSpan = document.createElement("span");
+            newSpan.innerHTML = message + "<br/>";
+            resultDiv.appendChild(newSpan);
+        };//successMessage
+
+        var errorMessage = function (message) {
+            var resultDiv = document.getElementById("errorDiv");
+            var newSpan = document.createElement("span");
+            newSpan.innerHTML = message + "<br/>";
+            resultDiv.appendChild(newSpan);
+        };//errorMessage
+
+        var db = {
+            name: "EmpDB",
+            version: 1,
+            instance: {},
+            storeName: { emp: "empMN" },
+            defaultErrorHandler: function (e) {
+                errorMessage("Add Error: " + e.target.error.name);
+            },
+            setDefaultErrorHandler: function (request) {
+                if ("onerror" in request) { request.onerror = db.defaultErrorHandler; }
+                if ("onblocked" in request) { request.onblocked = db.defaultErrorHandler; }
+                if ("onabort" in request) { request.onabort = db.defaultErrorHandler; }
+            }
+        };//db
+
+        $(document).ready(
+            function () {
+                if (!window.indexedDB) {
+                    alert("This browser does not support indexedDB");
+                    errorMessage("This browser does not support indexedDB");
+                }
+                else {
+                    $("#addEmpsButton").click(function () {
+                        var emps = [
+                            { "EmpID": 102, EmpName: "Tintin", Age: 30, Email: "tintin@t.com" },
+                            { "EmpID": 103, EmpName: "Snowy", Age: 13, Email: "snowy@s.com" },
+                            { "EmpID": 104, EmpName: "Hadhock", Age: 36, Email: "hadhock@h.com" }
+                        ];
+                        var transaction = db.instance.transaction([db.storeName.emp], "readwrite");
+                        var emp = transaction.objectStore(db.storeName.emp);
+                        successMessage("Adding " + emps.length + " Rec's to the " + db.name + "." + emp.name + " table");
+
+                        for (var i = 0; i < emps.length; i++)
+                        {
+                            alert("EmpName: " + emps[i].EmpName);
+                            var addRequest = emp.add(emps[i], emps[i].EmpID);
+                            db.setDefaultErrorHandler(addRequest);
+                        }
+
+                        addRequest.onsuccess = function (e) {
+                            successMessage("Last of the Emp Added -> ID: " + e.target.result);
+                        };//onsuccess
+                    });//addEmpsButton
+
+                    $("#createButton").click(function () {
+                        successMessage("From Create Button Click");
+                        openDatabase();
+                    });//createButton
+
+                    $("#addEmpButton").click(function () {
+                        var emp = {
+                            EmpID: Number($("#empIDTextBox").val()),
+                            EmpName: $("#empNameTextBox").val(),
+                            Age: Number($("#ageTextBox").val()),
+                            Email: $("#emailTextBox").val()
+                        };
+
+                        var transaction = db.instance.transaction([db.storeName.emp], "readwrite");
+                        var ee = transaction.objectStore(db.storeName.emp);
+                        successMessage("Adding 1 rec to the " + db.name + "." + ee.name + " table");
+                        var addRequest = ee.add(emp, emp.EmpID);
+                        db.setDefaultErrorHandler(addRequest);
+
+                        addRequest.onsuccess = function (e) {
+                            successMessage("Emp Added -> ID: " + e.target.result);
+                        };//onsuccess
+                    });//addEmpButton
+
+                    $("#searchEmpButton").click(function () {
+                        var transaction = db.instance.transaction([db.storeName.emp], "readwrite");
+                        var emp = transaction.objectStore(db.storeName.emp);
+                        var keyID = Number($("#empIDTextBox").val());
+                        successMessage("Finding the ID: " + keyID + ", from the database: " + db.name + "." + emp.name + " table");
+                        var getRequest = emp.get(keyID);
+                        db.setDefaultErrorHandler(getRequest);
+                        getRequest.onsuccess = function (e) {
+
+                            if (getRequest.result) {
+                                successMessage("Emp -> EmpID: " + getRequest.result.EmpID + ", EmpName: " + getRequest.result.EmpName + ", Age: " + getRequest.result.Age + " and Email: " + getRequest.result.Email);
+                                $("#empIDTextBox").val(getRequest.result.EmpID).attr("disable", "true");
+                                $("#empNameTextBox").val(getRequest.result.EmpName)
+                                $("#ageTextBox").val(getRequest.result.Age)
+                                $("#emailTextBox").val(getRequest.result.Email);
+                            }
+                            else {
+                                successMessage("No Employee with this EmpID: " + keyID);
+                            }
+                        }//getRequest
+                    });//searchEmpButton
+
+                    $("#updateEmpButton").click(function () {
+                        var empData = {
+                            EmpID: Number($("#empIDTextBox").val()),
+                            EmpName: $("#empNameTextBox").val(),
+                            Age: Number($("#ageTextBox").val()),
+                            Email: $("#emailTextBox").val()
+                        };
+                        var transaction = db.instance.transaction([db.storeName.emp], "readwrite");
+                        var emp = transaction.objectStore(db.storeName.emp);
+                        var keyID = Number($("#empIDTextBox").val());
+                        var getRequest = emp.get(keyID);
+                        db.setDefaultErrorHandler(getRequest);
+
+                        getRequest.onsuccess = function () {
+                            if (getRequest.result) {
+                                var data = getRequest.result;
+                                data.EmpName = empData.EmpName;
+                                data.Age = empData.Age;
+                                data.Email = empData.Email;
+
+                                var updateRequest = emp.put(data, data.EmpID);
+                                db.setDefaultErrorHandler(updateRequest);
+
+                                updateRequest.onsuccess = function (e) {
+                                    successMessage("Emp with EmpID: " + getRequest.result.EmpID + " Updated");
+                                    //$("#empIDTextBox").attr("enabled", true);
+                                    //$("#updateEmpButton").attr("disabled", true);
+                                }//updateRequest.onsuccess
+                            }
+                            else {
+                                successMessage("No Employee with this EmpID: " + keyID);
+                            }
+                        };//onsuccess
+                    });//updateEmpButton
+
+                }
+
+                var openDatabase = function () {
+                    var openRequest = indexedDB.open(db.name, db.version);
+
+                    openRequest.onupgradeneeded = function (e) {
+                        var newVersion = e.target.result;
+                        if (!newVersion.objectStoreNames.contains(db.storeName.emp)) {
+                            successMessage("Creating <code>emp</code> store");
+                            newVersion.createObjectStore(db.storeName.emp, { KeyPath: "EmpID" });
+                        }
+                    };//onupgradeneeded
+
+                    db.setDefaultErrorHandler(openRequest);
+                    openRequest.onsuccess = function (e) {
+                        db.instance = e.target.result;
+                        successMessage("The <code>" + db.name + "</code> database open and ready!!");
+                    };//onsuccess
+
+                };//openDatabase
+
+                openDatabase();
+            }//function
+        );//ready
+
+    </script>
+</head>
+<body>
+    <div>
+        <button type="button" id="createButton">Create Database</button>
+        <button type="button" id="deleteButton">Delete Database</button>
+        <button type="button" id="addEmpsButton">Add Emps</button>
+        <button type="button" id="readEmpsButton">Get Employees</button>
+        <br /><br />
+
+        <label class="lableWidth">EmpID: </label>
+        <input type="number" id="empIDTextBox" placeholder="Enter ID Here" /> &nbsp;
+        <button type="button" id="searchEmpButton">Search</button><br />
+        <label class="lableWidth">EmpName: </label>
+        <input type="text" id="empNameTextBox" placeholder="Enter EmpName Here" /><br />
+        <label class="lableWidth">Age: </label>
+        <input type="number" id="ageTextBox" placeholder="Enter Age Here" /><br />
+        <label class="lableWidth">Email: </label>
+        <input type="email" id="emailTextBox" placeholder="Enter Email Here" /><br /><br />
+        <button type="button" id="addEmpButton">Add Employee</button> &nbsp;
+        <button type="button" id="updateEmpButton">Update Employee</button> &nbsp;
+    </div><hr />
+    <div id="resultDiv" style="position:relative; float:left; width:400px; background-color:cornflowerblue;">
+        <p>ResultDiv</p>
+    </div>
+    <div id="errorDiv" style="position:relative; float:left; width:400px; background-color:lightcoral;">
+        <p>ErrorDiv</p>
+    </div>
+
+</body>
+</html>

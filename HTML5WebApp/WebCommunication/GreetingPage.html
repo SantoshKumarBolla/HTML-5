@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function SendMessage() {
+            var name = document.getElementById("NameTextBox").value;
+            var frame = document.getElementById("HelloReceiveFrame");
+            frame.contentWindow.postMessage(name, "http://localhost:41643")
+        }
+    </script>
+</head>
+<body>
+    <section>
+        Name: <input type="text" id="NameTextBox" value="Archie"/>&nbsp;
+        <input type="button" id="SendMessageButton" value="Send Message" onclick="SendMessage()"/>
+    </section>
+    <section>
+        <iframe id="HelloReceiveFrame" src="HelloPage.html" height="200" width="400"/>
+    </section>
+</body>
+</html>

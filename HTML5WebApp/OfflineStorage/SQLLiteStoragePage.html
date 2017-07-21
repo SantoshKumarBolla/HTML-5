@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SQL Storage Page</title>
+    <script>
+        var dbase = { dbName: "EmpDB", versionNo: "1.0", textDescription: "SQLLite Demo", size: 2 * 1024 * 1024 };
+
+        function CreateDB() {
+            var db = openDatabase(dbase.dbName, dbase.versionNo, dbase.textDescription, dbase.size);
+            if (!db) {
+                alert("Create Database failed");
+            }
+            else {
+                alert("Database Created");
+                db.transaction(function (ex) {
+                    ex.executeSql("Create table if not exists Employees(EmpID unique, EmpName)");
+                    ex.executeSql("Insert into Employees(EmpID, EmpName) values(1, 'Tintin')");
+                    ex.executeSql("Insert into Employees(EmpID, EmpName) values(2, 'Snowy')");
+                    alert("All Rec Inserted")
+                });//transaction
+            }
+        }
+
+        function ReadDB() {
+            var db = openDatabase(dbase.dbName, dbase.versionNo, dbase.textDescription, dbase.size);
+            if (!db) {
+                alert("Open Database failed");
+            }
+            else {
+                db.transaction(function (ex) {
+                    ex.executeSql("Select * from Employees", [], OnSuccess);
+                });//transaction
+            }
+        }
+
+        function OnSuccess(ex, result) {
+            var str = "";
+            var len = result.rows.length;
+            for (var i = 0; i < len; i++) {
+                str += "EmpID: " + result.rows.item(i).EmpID + ", EmpName: " + result.rows.item(i).EmpName + "<br/>"
+            }
+
+            document.getElementById("EmpDetailsDiv").innerHTML = str;
+        }
+
+
+    </script>
+</head>
+<body>
+    <input type="button" name="CreateDatabaseButton" value="Create Database" onclick="CreateDB(); return false;"/><br />
+    <input type="button" name="ReadDataButton" value="Read Data" onclick="ReadDB(); return false;" /><br />
+
+    <div id="EmpDetailsDiv"></div>
+</body>
+</html>
