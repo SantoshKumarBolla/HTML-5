@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html manifest="../Caching/DateTimeCache.manifest">
+<head>
+    <meta charset="utf-8" />
+    <title>Caching Page</title>
+    <script src="../Caching/DateTimeDemo.js"></script>
+
+    <script>
+        function GetDT() {
+            document.getElementById("DTDiv").innerHTML = GetDateTime();
+        }
+    </script>
+
+</head>
+<body>
+    <img src="../Images/Mickey.gif" /><br />
+    <input type="button" value="Get DateTime" id="GetDateTimeButton" onclick="GetDT(); return false;"/>
+    <div id="DTDiv"></div>
+</body>
+</html>

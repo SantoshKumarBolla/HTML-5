@@ -65,12 +65,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Caching\DateTimeDemo.js" />
     <Content Include="Content\jquery.textshadow.css" />
     <Content Include="DragAndDrop\DragAndDropPage.html" />
     <Content Include="Drawing\CanvasPage.html" />
     <Content Include="Drawing\SVGPage.html" />
     <Content Include="GeoLocation\MyLocationPage.html" />
     <Content Include="ModernizerPolyFill\ModernizerTextShadowPage.html" />
+    <Content Include="OfflineCaching\CachingPage.html" />
+    <Content Include="OfflineCaching\TestManifestPage.html" />
+    <Content Include="OfflineStorage\StoragePage.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery.textshadow.js" />
@@ -78,6 +82,8 @@
     <Content Include="Video\AntenaWheels.ogg" />
     <Content Include="Video\Bike.webm" />
     <Content Include="Content\_jquery.textshadow.scss" />
+    <Content Include="Caching\DateTimeCache.manifest" />
+    <Content Include="Caching\TestManifest.manifest" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -106,13 +112,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
